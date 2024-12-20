@@ -88,7 +88,14 @@ namespace CORBA
     typedef ACE_OutputCDR::from_wchar from_wchar;
     typedef ACE_OutputCDR::from_string from_string;
     typedef ACE_OutputCDR::from_wstring from_wstring;
-
+    
+//debug
+    typedef ACE_OutputCDR::from_ulong from_ulong;
+    typedef ACE_OutputCDR::from_long from_long;
+    typedef ACE_OutputCDR::from_ushort from_ushort;
+    typedef ACE_OutputCDR::from_short from_short;
+    typedef ACE_OutputCDR::from_double from_double;
+//
     /// Insertion of the special types.
 
     void operator<<= (from_boolean);
@@ -98,6 +105,13 @@ namespace CORBA
     void operator<<= (from_string);
     void operator<<= (from_wstring);
 
+//debug
+    void operator<<= (from_ulong);
+    void operator<<= (from_long);
+    void operator<<= (from_ushort);
+    void operator<<= (from_short);
+    void operator<<= (from_double);
+//
     /// These extract octets, chars, booleans, bounded strings, and
     /// object references. All these are defined in ACE_InputCDR.
 
@@ -166,7 +180,7 @@ namespace CORBA
     CORBA::Boolean checked_to_abstract_base (CORBA::AbstractBase_ptr &) const;
 
     // Unimplemented - hides unsigned char insert/extract.
-    void operator<<= (unsigned char);
+    //void operator<<= (unsigned char);
     CORBA::Boolean operator>>= (unsigned char&) const;
 
   private:

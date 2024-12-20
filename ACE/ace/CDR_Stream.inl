@@ -185,6 +185,39 @@ ACE_OutputCDR::from_uint8::from_uint8 (ACE_CDR::UInt8 val)
 {
 }
 
+//debug
+ACE_INLINE
+ACE_OutputCDR::from_ulong::from_ulong (ACE_CDR::ULong val)
+  : val_ (val)
+{
+}
+
+ACE_INLINE
+ACE_OutputCDR::from_long::from_long (ACE_CDR::Long val)
+  : val_ (val)
+{
+}
+
+ACE_INLINE
+ACE_OutputCDR::from_ushort::from_ushort (ACE_CDR::UShort val)
+  : val_ (val)
+{
+}
+
+ACE_INLINE
+ACE_OutputCDR::from_short::from_short (ACE_CDR::Short val)
+  : val_ (val)
+{
+}
+
+ACE_INLINE
+ACE_OutputCDR::from_double::from_double (ACE_CDR::Double val)
+  : val_ (val)
+{
+}
+
+//
+
 ACE_INLINE
 ACE_InputCDR::Transfer_Contents::Transfer_Contents (ACE_InputCDR &rhs)
   :  rhs_ (rhs)

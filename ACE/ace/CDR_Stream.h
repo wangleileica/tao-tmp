@@ -209,6 +209,37 @@ public:
     ACE_CDR::UInt8 val_;
   };
 
+//debug
+  struct ACE_Export from_ulong
+  {
+    explicit from_ulong (ACE_CDR::ULong val);
+    ACE_CDR::ULong val_;
+  };
+
+  struct ACE_Export from_long
+  {
+    explicit from_long (ACE_CDR::Long val);
+    ACE_CDR::Long val_;
+  };
+
+  struct ACE_Export from_ushort
+  {
+    explicit from_ushort (ACE_CDR::UShort val);
+    ACE_CDR::UShort val_;
+  };
+
+  struct ACE_Export from_short
+  {
+    explicit from_short (ACE_CDR::Short val);
+    ACE_CDR::Short val_;
+  };
+
+  struct ACE_Export from_double
+  {
+    explicit from_double (ACE_CDR::Double val);
+    ACE_CDR::Double val_;
+  };
+//
   struct ACE_Export from_string
   {
     from_string (ACE_CDR::Char* s,

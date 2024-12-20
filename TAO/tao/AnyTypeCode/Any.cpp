@@ -323,6 +323,37 @@ CORBA::Any::operator<<= (CORBA::Any::from_wchar wc)
   TAO::Any_Basic_Impl::insert (*this, CORBA::_tc_wchar, &wc.val_);
 }
 
+// debug
+void
+CORBA::Any::operator<<= (CORBA::Any::from_ulong value)
+{
+  TAO::Any_Basic_Impl::insert (*this, CORBA::_tc_ulong, &value.val_);
+}
+
+
+void
+CORBA::Any::operator<<= (CORBA::Any::from_long value)
+{
+  TAO::Any_Basic_Impl::insert (*this, CORBA::_tc_long, &value.val_);
+}
+
+void
+CORBA::Any::operator<<= (CORBA::Any::from_ushort value)
+{
+  TAO::Any_Basic_Impl::insert (*this, CORBA::_tc_ushort, &value.val_);
+}
+void
+CORBA::Any::operator<<= (CORBA::Any::from_short value)
+{
+  TAO::Any_Basic_Impl::insert (*this, CORBA::_tc_short, &value.val_);
+}
+void
+CORBA::Any::operator<<= (CORBA::Any::from_double value)
+{
+  TAO::Any_Basic_Impl::insert (*this, CORBA::_tc_double, &value.val_);
+}
+//
+
 void
 CORBA::Any::operator<<= (CORBA::Any::from_string s)
 {

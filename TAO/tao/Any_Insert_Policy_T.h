@@ -28,6 +28,8 @@
 #include "tao/debug.h"
 #include "tao/IFR_Client_Adapter.h"
 
+#include "ace/CDR_Stream.h"
+
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
 namespace TAO
@@ -39,7 +41,65 @@ namespace TAO
 
     static inline void any_insert (CORBA::Any* p, S const & x)
       {
-        (*p) <<= x;
+#if 1      
+        if constexpr (std::is_integral<S>::value)
+        {
+          if constexpr (std::is_same<S, int>::value)
+          {
+            //(*p) <<= (ACE_OutputCDR::from_long(x));
+            (*p) <<= (static_cast<CORBA::Long>(x));
+          }
+          else if constexpr (std::is_same<S, unsigned int>::value)
+          {
+            //(*p) <<= (ACE_OutputCDR::from_ulong(x));
+            (*p) <<= (static_cast<CORBA::ULong>(x));
+          }
+          else if constexpr (std::is_same<S, long>::value)
+          {
+            //(*p) <<= (ACE_OutputCDR::from_long(x));
+            (*p) <<= (static_cast<CORBA::Long>(x));
+          }
+          else if constexpr (std::is_same<S, unsigned long>::value)
+          {
+            //(*p) <<= (ACE_OutputCDR::from_ulong(x));
+            (*p) <<= (static_cast<CORBA::ULong>(x));
+          }
+          else if constexpr (std::is_same<S, short unsigned int>::value)
+          {
+            //(*p) <<= (ACE_OutputCDR::from_ushort(x));
+            (*p) <<= (static_cast<CORBA::UShort>(x));
+          }
+          else if constexpr (std::is_same<S, short int>::value)
+          {
+            //(*p) <<= (ACE_OutputCDR::from_short(x));
+            (*p) <<= (static_cast<CORBA::Short>(x));
+          }
+          else
+          {
+            (*p) <<= x;
+          }
+        }
+        else if constexpr (std::is_pointer<S>::value)
+        {
+            // Handle Messaging::ExceptionHolder* case
+            //p->operator<<=(ACE_OutputCDR::from_ulong(reinterpret_cast<unsigned long>(x)));
+            (*p) <<= (reinterpret_cast<CORBA::Short>(x));
+        }
+        else if constexpr (std::is_same<S, double>::value)
+        {
+            //p->operator<<=(ACE_OutputCDR::from_double(x));
+            (*p) <<= (static_cast<CORBA::Double>(x));
+        }
+        else if constexpr (std::is_same<S, float>::value)
+        {
+            //p->operator<<=(ACE_OutputCDR::from_double(x));
+            (*p) <<= (static_cast<CORBA::Double>(x));
+        }   
+        else
+#endif        
+        {
+          (*p) <<= x;
+        }
       }
   };
 
